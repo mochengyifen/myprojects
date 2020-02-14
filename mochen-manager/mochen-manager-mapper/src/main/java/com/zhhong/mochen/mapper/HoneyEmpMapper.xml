@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhhong.mochen.mapper.HoneyEmpMapper">
+    <resultMap id="BaseResultMap" type="com.zhhong.mochen.pojo.HoneyEmp">
+        <id column="empId" jdbcType="VARCHAR" property="empid"/>
+        <result column="empName" jdbcType="VARCHAR" property="empname"/>
+        <result column="empPhone" jdbcType="VARCHAR" property="empphone"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="payPassword" jdbcType="VARCHAR" property="paypassword"/>
+        <result column="empIdcard" jdbcType="VARCHAR" property="empidcard"/>
+        <result column="IfAuthentication" jdbcType="VARCHAR" property="ifauthentication"/>
+        <result column="shareRate" jdbcType="DOUBLE" property="sharerate"/>
+        <result column="accountBalance" jdbcType="DOUBLE" property="accountbalance"/>
+        <result column="zfbaccount" jdbcType="VARCHAR" property="zfbaccount"/>
+        <result column="wxopendid" jdbcType="VARCHAR" property="wxopendid"/>
+        <result column="shareMax" jdbcType="DOUBLE" property="sharemax"/>
+        <result column="IfDisabled" jdbcType="VARCHAR" property="ifdisabled"/>
+        <result column="IfDelete" jdbcType="VARCHAR" property="ifdelete"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="empOrganizationId" jdbcType="VARCHAR" property="emporganizationid"/>
+        <result column="empIcategoryId" jdbcType="VARCHAR" property="empicategoryid"/>
+        <result column="areaId" jdbcType="VARCHAR" property="areaid"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    empId, empName, empPhone, password, payPassword, empIdcard, IfAuthentication, shareRate, 
+    accountBalance, zfbaccount, wxopendid, shareMax, IfDisabled, IfDelete, updateTime, 
+    createTime, empOrganizationId, empIcategoryId, areaId
+  </sql>
+    <select id="selectByExample" parameterType="com.zhhong.mochen.pojo.HoneyEmpExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from honey_emp
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="startRow != null and pageSize != null and pageSize != 0">
+            limit #{startRow},#{pageSize}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from honey_emp
+        where empId = #{empid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from honey_emp
+    where empId = #{empid,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.zhhong.mochen.pojo.HoneyEmpExample">
+        delete from honey_emp
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.zhhong.mochen.pojo.HoneyEmp">
+    insert into honey_emp (empId, empName, empPhone, 
+      password, payPassword, empIdcard, 
+      IfAuthentication, shareRate, accountBalance, 
+      zfbaccount, wxopendid, shareMax, 
+      IfDisabled, IfDelete, updateTime, 
+      createTime, empOrganizationId, empIcategoryId, 
+      areaId)
+    values (#{empid,jdbcType=VARCHAR}, #{empname,jdbcType=VARCHAR}, #{empphone,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{paypassword,jdbcType=VARCHAR}, #{empidcard,jdbcType=VARCHAR}, 
+      #{ifauthentication,jdbcType=VARCHAR}, #{sharerate,jdbcType=DOUBLE}, #{accountbalance,jdbcType=DOUBLE}, 
+      #{zfbaccount,jdbcType=VARCHAR}, #{wxopendid,jdbcType=VARCHAR}, #{sharemax,jdbcType=DOUBLE}, 
+      #{ifdisabled,jdbcType=VARCHAR}, #{ifdelete,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{emporganizationid,jdbcType=VARCHAR}, #{empicategoryid,jdbcType=VARCHAR}, 
+      #{areaid,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.zhhong.mochen.pojo.HoneyEmp">
+        insert into honey_emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="empid != null">
+                empId,
+            </if>
+            <if test="empname != null">
+                empName,
+            </if>
+            <if test="empphone != null">
+                empPhone,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="paypassword != null">
+                payPassword,
+            </if>
+            <if test="empidcard != null">
+                empIdcard,
+            </if>
+            <if test="ifauthentication != null">
+                IfAuthentication,
+            </if>
+            <if test="sharerate != null">
+                shareRate,
+            </if>
+            <if test="accountbalance != null">
+                accountBalance,
+            </if>
+            <if test="zfbaccount != null">
+                zfbaccount,
+            </if>
+            <if test="wxopendid != null">
+                wxopendid,
+            </if>
+            <if test="sharemax != null">
+                shareMax,
+            </if>
+            <if test="ifdisabled != null">
+                IfDisabled,
+            </if>
+            <if test="ifdelete != null">
+                IfDelete,
+            </if>
+            <if test="updatetime != null">
+                updateTime,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="emporganizationid != null">
+                empOrganizationId,
+            </if>
+            <if test="empicategoryid != null">
+                empIcategoryId,
+            </if>
+            <if test="areaid != null">
+                areaId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="empid != null">
+                #{empid,jdbcType=VARCHAR},
+            </if>
+            <if test="empname != null">
+                #{empname,jdbcType=VARCHAR},
+            </if>
+            <if test="empphone != null">
+                #{empphone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="paypassword != null">
+                #{paypassword,jdbcType=VARCHAR},
+            </if>
+            <if test="empidcard != null">
+                #{empidcard,jdbcType=VARCHAR},
+            </if>
+            <if test="ifauthentication != null">
+                #{ifauthentication,jdbcType=VARCHAR},
+            </if>
+            <if test="sharerate != null">
+                #{sharerate,jdbcType=DOUBLE},
+            </if>
+            <if test="accountbalance != null">
+                #{accountbalance,jdbcType=DOUBLE},
+            </if>
+            <if test="zfbaccount != null">
+                #{zfbaccount,jdbcType=VARCHAR},
+            </if>
+            <if test="wxopendid != null">
+                #{wxopendid,jdbcType=VARCHAR},
+            </if>
+            <if test="sharemax != null">
+                #{sharemax,jdbcType=DOUBLE},
+            </if>
+            <if test="ifdisabled != null">
+                #{ifdisabled,jdbcType=VARCHAR},
+            </if>
+            <if test="ifdelete != null">
+                #{ifdelete,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="emporganizationid != null">
+                #{emporganizationid,jdbcType=VARCHAR},
+            </if>
+            <if test="empicategoryid != null">
+                #{empicategoryid,jdbcType=VARCHAR},
+            </if>
+            <if test="areaid != null">
+                #{areaid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.zhhong.mochen.pojo.HoneyEmpExample" resultType="java.lang.Long">
+        select count(*) from honey_emp
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update honey_emp
+        <set>
+            <if test="record.empid != null">
+                empId = #{record.empid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.empname != null">
+                empName = #{record.empname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.empphone != null">
+                empPhone = #{record.empphone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paypassword != null">
+                payPassword = #{record.paypassword,jdbcType=VARCHAR},
+            </if>
+            <if test="record.empidcard != null">
+                empIdcard = #{record.empidcard,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ifauthentication != null">
+                IfAuthentication = #{record.ifauthentication,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sharerate != null">
+                shareRate = #{record.sharerate,jdbcType=DOUBLE},
+            </if>
+            <if test="record.accountbalance != null">
+                accountBalance = #{record.accountbalance,jdbcType=DOUBLE},
+            </if>
+            <if test="record.zfbaccount != null">
+                zfbaccount = #{record.zfbaccount,jdbcType=VARCHAR},
+            </if>
+            <if test="record.wxopendid != null">
+                wxopendid = #{record.wxopendid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sharemax != null">
+                shareMax = #{record.sharemax,jdbcType=DOUBLE},
+            </if>
+            <if test="record.ifdisabled != null">
+                IfDisabled = #{record.ifdisabled,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ifdelete != null">
+                IfDelete = #{record.ifdelete,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updatetime != null">
+                updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createtime != null">
+                createTime = #{record.createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.emporganizationid != null">
+                empOrganizationId = #{record.emporganizationid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.empicategoryid != null">
+                empIcategoryId = #{record.empicategoryid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.areaid != null">
+                areaId = #{record.areaid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update honey_emp
+        set empId = #{record.empid,jdbcType=VARCHAR},
+        empName = #{record.empname,jdbcType=VARCHAR},
+        empPhone = #{record.empphone,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
+        payPassword = #{record.paypassword,jdbcType=VARCHAR},
+        empIdcard = #{record.empidcard,jdbcType=VARCHAR},
+        IfAuthentication = #{record.ifauthentication,jdbcType=VARCHAR},
+        shareRate = #{record.sharerate,jdbcType=DOUBLE},
+        accountBalance = #{record.accountbalance,jdbcType=DOUBLE},
+        zfbaccount = #{record.zfbaccount,jdbcType=VARCHAR},
+        wxopendid = #{record.wxopendid,jdbcType=VARCHAR},
+        shareMax = #{record.sharemax,jdbcType=DOUBLE},
+        IfDisabled = #{record.ifdisabled,jdbcType=VARCHAR},
+        IfDelete = #{record.ifdelete,jdbcType=VARCHAR},
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+        empOrganizationId = #{record.emporganizationid,jdbcType=VARCHAR},
+        empIcategoryId = #{record.empicategoryid,jdbcType=VARCHAR},
+        areaId = #{record.areaid,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhhong.mochen.pojo.HoneyEmp">
+        update honey_emp
+        <set>
+            <if test="empname != null">
+                empName = #{empname,jdbcType=VARCHAR},
+            </if>
+            <if test="empphone != null">
+                empPhone = #{empphone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="paypassword != null">
+                payPassword = #{paypassword,jdbcType=VARCHAR},
+            </if>
+            <if test="empidcard != null">
+                empIdcard = #{empidcard,jdbcType=VARCHAR},
+            </if>
+            <if test="ifauthentication != null">
+                IfAuthentication = #{ifauthentication,jdbcType=VARCHAR},
+            </if>
+            <if test="sharerate != null">
+                shareRate = #{sharerate,jdbcType=DOUBLE},
+            </if>
+            <if test="accountbalance != null">
+                accountBalance = #{accountbalance,jdbcType=DOUBLE},
+            </if>
+            <if test="zfbaccount != null">
+                zfbaccount = #{zfbaccount,jdbcType=VARCHAR},
+            </if>
+            <if test="wxopendid != null">
+                wxopendid = #{wxopendid,jdbcType=VARCHAR},
+            </if>
+            <if test="sharemax != null">
+                shareMax = #{sharemax,jdbcType=DOUBLE},
+            </if>
+            <if test="ifdisabled != null">
+                IfDisabled = #{ifdisabled,jdbcType=VARCHAR},
+            </if>
+            <if test="ifdelete != null">
+                IfDelete = #{ifdelete,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updateTime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="emporganizationid != null">
+                empOrganizationId = #{emporganizationid,jdbcType=VARCHAR},
+            </if>
+            <if test="empicategoryid != null">
+                empIcategoryId = #{empicategoryid,jdbcType=VARCHAR},
+            </if>
+            <if test="areaid != null">
+                areaId = #{areaid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where empId = #{empid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zhhong.mochen.pojo.HoneyEmp">
+    update honey_emp
+    set empName = #{empname,jdbcType=VARCHAR},
+      empPhone = #{empphone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      payPassword = #{paypassword,jdbcType=VARCHAR},
+      empIdcard = #{empidcard,jdbcType=VARCHAR},
+      IfAuthentication = #{ifauthentication,jdbcType=VARCHAR},
+      shareRate = #{sharerate,jdbcType=DOUBLE},
+      accountBalance = #{accountbalance,jdbcType=DOUBLE},
+      zfbaccount = #{zfbaccount,jdbcType=VARCHAR},
+      wxopendid = #{wxopendid,jdbcType=VARCHAR},
+      shareMax = #{sharemax,jdbcType=DOUBLE},
+      IfDisabled = #{ifdisabled,jdbcType=VARCHAR},
+      IfDelete = #{ifdelete,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      empOrganizationId = #{emporganizationid,jdbcType=VARCHAR},
+      empIcategoryId = #{empicategoryid,jdbcType=VARCHAR},
+      areaId = #{areaid,jdbcType=VARCHAR}
+    where empId = #{empid,jdbcType=VARCHAR}
+  </update>
+
+
+    <select id="selectEmpAll" resultType="java.util.Map">
+        select e.*,o.organizationName organizationname,i.icategoryName icategoryname
+        from honey_emp e,honey_identitycategory i,honey_organization o
+        where e.empOrganizationId=o.organizationId and e.empIcategoryId=i.icategoryId
+        <foreach collection="ids" item="item_id" separator=","
+                 open="and e.empOrganizationId in(" close=")">
+            #{item_id}
+        </foreach>
+        <if test="icategoryName != null and icategoryName != ''">
+            and i.icategoryName like concat(concat('%',#{icategoryName}),'%')
+        </if>
+        and e.IfDelete=0
+        <if test="empid != null and empid != ''">
+            and e.empId != #{empid}
+        </if>
+        <if test="selectWhere != null and selectWhere != ''">
+            and (empName like concat(concat('%',#{selectWhere}),'%') or e.empPhone like
+            concat(concat('%',#{selectWhere}),'%'))
+        </if>
+        <if test="startRow != null and pageSize != null and pageSize != 0">
+            limit #{startRow},#{pageSize}
+        </if>
+    </select>
+
+    <select id="selectEmpCount" resultType="java.lang.Long">
+        select count(*)
+        from honey_emp e,honey_identitycategory i,honey_organization o
+        where e.empOrganizationId=o.organizationId and e.empIcategoryId=i.icategoryId
+        <foreach collection="ids" item="item_id" separator=","
+                 open="and e.empOrganizationId in(" close=")">
+            #{item_id}
+        </foreach>
+        <if test="icategoryName != null and icategoryName != ''">
+            and i.icategoryName like concat(concat('%',#{icategoryName}),'%')
+        </if>
+
+        and e.IfDelete=0
+        <if test="empid != null and empid != ''">
+            and e.empId != #{empid}
+        </if>
+        <if test="selectWhere != null and selectWhere != ''">
+            and (empName like concat(concat('%',#{selectWhere}),'%') or e.empPhone like
+            concat(concat('%',#{selectWhere}),'%'))
+        </if>
+    </select>
+</mapper>

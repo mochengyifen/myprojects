@@ -1,0 +1,15 @@
+#短信发送
+accessKeyId: LTAIHB7manhoq7n2
+accessKeySecret: UKHGpMTntX0IRP4BBwjkzE0lKmpKlg
+#短信模板
+register: SMS_176532566
+login: SMS_176527683
+binding=: MS_176522627
+changePwd: SMS_176537611
+payPwd: SMS_176537709
+#身份证正反面识别
+character_client_id: hdGV09es5Mx6vyUmbTjcIAE0
+character_client_secret: yDI6m44EygGVH9Pc9Qb4RhXEud3kuO3M
+#活体检测
+face_client_id: jlh0HEj21A7nktavW1RF10ZY
+face_client_secret: podb3vBc9TErZEyXcPirywayi7kDyHu5

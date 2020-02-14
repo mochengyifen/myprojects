@@ -1,0 +1,81 @@
+server:
+  port: 8080
+  servlet:
+    #配置访问项目名
+    context-path: /mochenManagerWeb
+    #配置文件上传
+    multiple: true
+    #单个文件限制
+    max-file-size: 20MB
+    #总上传文件大小
+    max-request-size: 40MB
+#日期类型格式化
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+  #设置应用程序名
+  application:
+    name: mochenManagerWeb
+  #配置mysql+druid
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #基本属性
+      url: jdbc:mysql://101.132.134.210:3306/honey?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+      username: root
+      password: rootMysql123...
+      #配置初始化大小/最小/最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      #验证连接的有效性
+      test-while-idle: true
+      #获取连接时候验证，会影响性能
+      test-on-borrow: false
+      #在连接归还到连接池时是否测试该连接
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+  #redis配置
+  redis:
+    #Redis数据库索引（默认为0）
+    database: 0
+    #Redis服务器地址
+    host: 127.0.0.1
+    #端口
+    port: 6379
+    #密码
+    password:
+    jedis:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+    #连接超时时间(毫秒)
+    timeout: 1000
+#mybatis配置
+mybatis:
+  #mapper.xml位置配置
+  mapper-locations: com.zhhong.mochen.mapper.*.xml
+  #pojo位置配置
+  type-aliases-package: com.zhhong.mochen.pojo
+
+
+

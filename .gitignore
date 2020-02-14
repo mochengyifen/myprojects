@@ -1,0 +1,10 @@
+# Project exclude paths
+/mochen-common/target/
+/mochen-manager/mochen-manager-mapper/target/
+/mochen-manager/mochen-manager-pojo/target/
+/mochen-manager/mochen-manager-service/target/
+/mochen-manager/mochen-manager-web/target/
+.idea
+*.iml
+out
+gen
