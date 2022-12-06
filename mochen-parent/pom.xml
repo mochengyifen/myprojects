@@ -39,7 +39,7 @@
         <joda-time.version>2.5</joda-time.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
-        <commons-net.version>3.3</commons-net.version>
+        <commons-net.version>3.9.0</commons-net.version>
     </properties>
     <dependencyManagement>
         <dependencies>
